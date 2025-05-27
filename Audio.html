@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recitare Audio – Luceafărul</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="imagini/luceafarul-icon.png" type="image/png">
+</head>
+<body>
+
+<a href="#" class="scroll-top" id="scrollTopBtn">↑</a>
+
+<header>
+    <div class="logo-container">
+        <img src="imagini/luceafarul-icon.png" alt="Logo Luceafărul" class="logo">
+        <h1>Recitare – Luceafărul de Mihai Eminescu</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Despre Operă</a></li>
+            <li><a href="Eminescu.html">Despre Autor</a></li>
+            <li><a href="Audio.html" class="active">Recitare Audio</a></li>
+        </ul>
+    </nav>
+    <button id="toggleDarkMode" class="dark-mode-toggle">🌙 Mod întunecat</button>
+</header>
+
+<main>
+    <section class="card show">
+        <h2>Recitare Video – „Luceafărul” de Mihai Eminescu</h2>
+        <p>Ascultă și vizionează recitarea uneia dintre cele mai frumoase poezii din literatura română:</p>
+        
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/IxyOOUGAuss" 
+        title="Recitare Luceafărul" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+</iframe>
+
+        </div>
+    </section>
+</main>
+
+
+<footer>
+    <p>Proiect realizat pentru ora de limba și literatura română – clasa a X-a</p>
+</footer>
+
+<script>
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.addEventListener("scroll", () => {
+        scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+    scrollBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
+<script>
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+</script>
+<script>
+    const darkModeToggle = document.getElementById('toggleDarkMode');
+    const currentMode = localStorage.getItem('darkMode');
+
+    // Aplică tema la încărcare
+    if (currentMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
+        localStorage.setItem('darkMode', mode);
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despre Mihai Eminescu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="imagini/luceafarul-icon.png" type="image/png">
+</head>
+<a href="#" class="scroll-top" id="scrollTopBtn">↑</a>
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="imagini/luceafarul-icon.png" alt="Logo Luceafărul" class="logo">
+        <h1>Mihai Eminescu – Poetul Național</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Despre Operă</a></li>
+            <li><a href="Eminescu.html">Despre Autor</a></li>
+            <li><a href="Audio.html">Recitare Audio</a></li>
+        </ul>
+    </nav>
+    <button id="toggleDarkMode" class="dark-mode-toggle">🌙 Mod întunecat</button>
+</header>
+
+<!-- ... antetul rămâne neschimbat ... -->
+
+<main>
+    <section class="card">
+        <h2>Viața lui Mihai Eminescu</h2>
+        <div class="card-content">
+            <div class="card-text">
+                <p>Mihai Eminescu s-a născut la 15 ianuarie 1850 în satul Ipotești, județul Botoșani, într-o familie de mici boieri moldoveni. A fost al șaptelea copil dintr-o familie numeroasă, cu unsprezece frați, crescând într-un mediu rural care i-a influențat sensibilitatea artistică și dragostea pentru natură.</p>
+                <p>Și-a început studiile la Cernăuți, unde s-a remarcat prin talentul său literar și pasiunea pentru cultură. Ulterior, a studiat la universitățile din Viena și Berlin, unde s-a format ca intelectual, aprofundând filosofia, literatura clasică și ideile naționale și politice ale epocii. Contactul cu marile curente de gândire europeană i-a modelat viziunea artistică și i-a conturat stilul inconfundabil, devenind un reprezentant de seamă al romantismului românesc.</p>
+            </div>
+            <img src="imagini/eminescu-tanar.jpg" alt="Mihai Eminescu tânăr" class="poet-img">
+        </div>
+    </section>
+
+    <section class="card reverse">
+        <h2>Cariera literară</h2>
+        <div class="card-content">
+            <img src="imagini/eminescu-scriitor.jpg" alt="Eminescu scriind" class="poet-img">
+            <div class="card-text">
+                <p>Eminescu a debutat la vârsta de 16 ani și a devenit rapid cel mai important poet romantic român. A fost redactor la „Timpul”, ziarul oficial al Partidului Conservator, unde a publicat articole cu o profundă încărcătură patriotică și filozofică.</p>
+                <p>Opera sa cuprinde poezii, proză și articole politice, remarcându-se prin profunzimea ideilor, limbajul rafinat și viziunea filozofică asupra lumii.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Teme și influențe</h2>
+        <div class="card-content">
+            <div class="card-text">
+                <p>Poezia eminesciană este marcată de teme precum iubirea, timpul, moartea, condiția geniului, natura și aspirația spre absolut. A fost influențat de romantism, dar și de filozofia lui Schopenhauer și Kant.</p>
+                <p>În „Luceafărul”, toate aceste teme sunt împletite într-un mod complex, devenind una dintre cele mai reprezentative creații ale sale.</p>
+            </div>
+            <img src="imagini/eminescu-teme.jpeg" alt="Temele poeziei eminesciene" class="poet-img">
+        </div>
+    </section>
+
+    <section class="card reverse">
+        <h2>Moștenirea culturală</h2>
+        <div class="card-content">
+            <img src="imagini/mormant-eminescu.jpg" alt="Mormântul lui Eminescu" class="poet-img">
+            <div class="card-text">
+                <p>Mihai Eminescu a murit la 15 iunie 1889, la doar 39 de ani. A lăsat în urmă o operă vastă, care continuă să inspire generații întregi de cititori, scriitori și cercetători.</p>
+                <p>Este considerat poetul național al României, iar ziua nașterii sale este sărbătorită anual ca Ziua Culturii Naționale.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Proiect realizat pentru ora de limba și literatura română – clasa a X-a</p>
+</footer>
+
+<script>
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+        scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+    scrollBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
+
+<script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+</script>
+<script>
+    const darkModeToggle = document.getElementById('toggleDarkMode');
+    const currentMode = localStorage.getItem('darkMode');
+
+    // Aplică tema la încărcare
+    if (currentMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
+        localStorage.setItem('darkMode', mode);
+    });
+</script>
+
+</body>
+</html>
